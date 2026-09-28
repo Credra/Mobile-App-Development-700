@@ -31,29 +31,20 @@ public final class IngredientNormalizer {
             "canned", "plain", "unsalted", "salted", "free", "range"
     ));
 
-    /** Synonyms mapped onto the name the seeded recipes use. Keys are singular. */
+    /**
+     * Everyday variations mapped onto the name the recipes use. Kept deliberately
+     * small: only the ingredients this app actually ships with need an entry.
+     * Keys are singular because aliasing runs after the plural rules.
+     */
     private static final Map<String, String> ALIASES;
 
     static {
         Map<String, String> m = new HashMap<>();
-        m.put("mince", "ground beef");
-        m.put("beef mince", "ground beef");
-        m.put("aubergine", "eggplant");
-        m.put("brinjal", "eggplant");
-        m.put("courgette", "zucchini");
-        m.put("baby marrow", "zucchini");
-        m.put("spring onion", "green onion");
-        m.put("coriander", "cilantro");
-        m.put("rocket", "arugula");
-        m.put("maize meal", "cornmeal");
-        m.put("mealie meal", "cornmeal");
-        m.put("chilli", "chili");
-        m.put("capsicum", "bell pepper");
-        m.put("green pepper", "bell pepper");
-        m.put("red pepper", "bell pepper");
+        m.put("mince", "beef mince");
         m.put("brown onion", "onion");
-        m.put("castor sugar", "sugar");
         m.put("cake flour", "flour");
+        m.put("baby marrow", "courgette");
+        m.put("zucchini", "courgette");
         ALIASES = Collections.unmodifiableMap(m);
     }
 

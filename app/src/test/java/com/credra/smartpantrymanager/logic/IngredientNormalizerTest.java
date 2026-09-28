@@ -43,17 +43,18 @@ public class IngredientNormalizerTest {
     }
 
     @Test
-    public void mapsRegionalSynonymsOntoOneName() {
-        assertEquals("ground beef", IngredientNormalizer.canonical("Beef Mince"));
-        assertEquals("green onion", IngredientNormalizer.canonical("Spring Onions"));
-        assertEquals("eggplant", IngredientNormalizer.canonical("Brinjal"));
-        assertEquals("zucchini", IngredientNormalizer.canonical("Baby Marrows"));
+    public void mapsEverydayVariationsOntoTheRecipeName() {
+        assertEquals("beef mince", IngredientNormalizer.canonical("Mince"));
+        assertEquals("onion", IngredientNormalizer.canonical("Brown Onions"));
+        assertEquals("flour", IngredientNormalizer.canonical("Cake Flour"));
+        assertEquals("courgette", IngredientNormalizer.canonical("Baby Marrows"));
+        assertEquals("courgette", IngredientNormalizer.canonical("Zucchini"));
     }
 
     @Test
     public void keepsMultiWordNamesIntact() {
         assertEquals("olive oil", IngredientNormalizer.canonical("Olive Oil"));
-        assertEquals("ground beef", IngredientNormalizer.canonical("ground beef"));
+        assertEquals("beef mince", IngredientNormalizer.canonical("beef mince"));
     }
 
     @Test
