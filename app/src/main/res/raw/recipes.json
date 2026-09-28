@@ -1,0 +1,588 @@
+[
+  {
+    "name": "Scrambled Eggs",
+    "category": "Breakfast",
+    "servings": 2,
+    "prepMinutes": 10,
+    "method": "Beat the eggs with the salt.\nMelt the butter in a pan over low heat.\nPour in the eggs and stir gently until just set.\nServe immediately.",
+    "ingredients": [
+      {
+        "name": "eggs",
+        "quantity": 3,
+        "unit": "unit"
+      },
+      {
+        "name": "butter",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "salt",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Cheese Omelette",
+    "category": "Breakfast",
+    "servings": 1,
+    "prepMinutes": 10,
+    "method": "Beat the eggs until smooth.\nMelt the butter in a pan over medium heat.\nPour in the eggs and cook until the base is set.\nScatter the cheese over one half, fold and serve.",
+    "ingredients": [
+      {
+        "name": "eggs",
+        "quantity": 3,
+        "unit": "unit"
+      },
+      {
+        "name": "cheese",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "butter",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "French Toast",
+    "category": "Breakfast",
+    "servings": 2,
+    "prepMinutes": 15,
+    "method": "Whisk the eggs and milk together.\nSoak each slice of bread in the mixture.\nMelt the butter in a pan and fry the bread until golden on both sides.\nServe warm.",
+    "ingredients": [
+      {
+        "name": "bread",
+        "quantity": 4,
+        "unit": "slices"
+      },
+      {
+        "name": "eggs",
+        "quantity": 2,
+        "unit": "unit"
+      },
+      {
+        "name": "milk",
+        "quantity": 100,
+        "unit": "ml"
+      },
+      {
+        "name": "butter",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Pancakes",
+    "category": "Breakfast",
+    "servings": 4,
+    "prepMinutes": 20,
+    "method": "Whisk the flour, milk, eggs and sugar into a smooth batter.\nRest the batter for ten minutes.\nMelt a little of the butter in a pan and swirl in a thin layer of batter.\nCook until set underneath, flip, then stack and serve.",
+    "ingredients": [
+      {
+        "name": "flour",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "milk",
+        "quantity": 300,
+        "unit": "ml"
+      },
+      {
+        "name": "eggs",
+        "quantity": 2,
+        "unit": "unit"
+      },
+      {
+        "name": "sugar",
+        "quantity": 30,
+        "unit": "g"
+      },
+      {
+        "name": "butter",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Flapjacks",
+    "category": "Breakfast",
+    "servings": 4,
+    "prepMinutes": 20,
+    "method": "Whisk the flour, baking powder and sugar together.\nBeat in the milk and eggs to make a thick batter.\nMelt a little of the butter in a pan over medium heat and drop in spoonfuls about ten centimetres across.\nCook until bubbles form on top, flip, then stack and serve.",
+    "ingredients": [
+      {
+        "name": "flour",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "milk",
+        "quantity": 200,
+        "unit": "ml"
+      },
+      {
+        "name": "eggs",
+        "quantity": 2,
+        "unit": "unit"
+      },
+      {
+        "name": "sugar",
+        "quantity": 30,
+        "unit": "g"
+      },
+      {
+        "name": "baking powder",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "butter",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Tomato and Basil Pasta",
+    "category": "Main",
+    "servings": 4,
+    "prepMinutes": 25,
+    "method": "Boil the spaghetti until al dente.\nSoften the garlic in the olive oil, then add the chopped tomatoes.\nSimmer for ten minutes until thickened.\nToss through the drained pasta and finish with torn basil.",
+    "ingredients": [
+      {
+        "name": "spaghetti",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "name": "tomatoes",
+        "quantity": 4,
+        "unit": "unit"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "cloves"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      },
+      {
+        "name": "basil",
+        "quantity": 10,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Garlic Butter Pasta",
+    "category": "Main",
+    "servings": 3,
+    "prepMinutes": 20,
+    "method": "Boil the spaghetti until al dente and reserve a little cooking water.\nMelt the butter and soften the sliced garlic in it.\nToss the pasta through the garlic butter with a splash of the cooking water.\nStir in the cheese and serve.",
+    "ingredients": [
+      {
+        "name": "spaghetti",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "name": "butter",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "garlic",
+        "quantity": 3,
+        "unit": "cloves"
+      },
+      {
+        "name": "cheese",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Spaghetti Bolognese",
+    "category": "Main",
+    "servings": 4,
+    "prepMinutes": 45,
+    "method": "Soften the chopped onion in a large pan until translucent.\nAdd the beef mince and brown it, breaking it up as it cooks.\nStir in the garlic and chopped chilli and cook for another minute.\nAdd the chopped tomatoes and simmer for twenty minutes.\nGrate the courgette, stir it through and simmer for another ten minutes.\nServe over boiled spaghetti.",
+    "ingredients": [
+      {
+        "name": "spaghetti",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "name": "beef mince",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "name": "tomatoes",
+        "quantity": 4,
+        "unit": "unit"
+      },
+      {
+        "name": "onion",
+        "quantity": 1,
+        "unit": "unit"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "cloves"
+      },
+      {
+        "name": "chilli",
+        "quantity": 1,
+        "unit": "unit"
+      },
+      {
+        "name": "courgette",
+        "quantity": 1,
+        "unit": "unit"
+      }
+    ]
+  },
+  {
+    "name": "Egg Fried Rice",
+    "category": "Main",
+    "servings": 3,
+    "prepMinutes": 20,
+    "method": "Heat the olive oil and soften the chopped onion and garlic.\nPush to one side and scramble the beaten eggs in the pan.\nAdd the cooked rice, ideally cooled leftovers, and stir over high heat.\nSeason and serve.",
+    "ingredients": [
+      {
+        "name": "rice",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "name": "eggs",
+        "quantity": 2,
+        "unit": "unit"
+      },
+      {
+        "name": "onion",
+        "quantity": 1,
+        "unit": "unit"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "cloves"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      }
+    ]
+  },
+  {
+    "name": "Chicken Fried Rice",
+    "category": "Main",
+    "servings": 3,
+    "prepMinutes": 25,
+    "method": "Heat the olive oil and fry the diced chicken until cooked through, then set aside.\nSoften the chopped onion in the same pan.\nScramble the eggs, then add the cooked rice and the chicken.\nStir over high heat until hot and serve.",
+    "ingredients": [
+      {
+        "name": "rice",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "name": "chicken",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "name": "eggs",
+        "quantity": 2,
+        "unit": "unit"
+      },
+      {
+        "name": "onion",
+        "quantity": 1,
+        "unit": "unit"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      }
+    ]
+  },
+  {
+    "name": "Mashed Potatoes",
+    "category": "Side",
+    "servings": 4,
+    "prepMinutes": 30,
+    "method": "Peel and boil the potatoes until tender.\nDrain well and return to the pan.\nMash with the butter and warm milk until smooth.\nSeason with the salt and serve.",
+    "ingredients": [
+      {
+        "name": "potatoes",
+        "quantity": 800,
+        "unit": "g"
+      },
+      {
+        "name": "butter",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "milk",
+        "quantity": 100,
+        "unit": "ml"
+      },
+      {
+        "name": "salt",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Potato Wedges",
+    "category": "Side",
+    "servings": 4,
+    "prepMinutes": 40,
+    "method": "Cut the potatoes into thick wedges.\nToss with the olive oil, salt and pepper.\nRoast at 200C for thirty five minutes, turning once.\nServe hot.",
+    "ingredients": [
+      {
+        "name": "potatoes",
+        "quantity": 600,
+        "unit": "g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp"
+      },
+      {
+        "name": "salt",
+        "quantity": 5,
+        "unit": "g"
+      },
+      {
+        "name": "pepper",
+        "quantity": 2,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Toasted Cheese Sandwich",
+    "category": "Light Meal",
+    "servings": 2,
+    "prepMinutes": 10,
+    "method": "Butter the outside of each slice of bread.\nLayer the cheese between two slices, buttered sides facing out.\nToast in a pan over medium heat until golden and the cheese has melted.\nCut and serve.",
+    "ingredients": [
+      {
+        "name": "bread",
+        "quantity": 4,
+        "unit": "slices"
+      },
+      {
+        "name": "cheese",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "butter",
+        "quantity": 30,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Tomato Soup",
+    "category": "Light Meal",
+    "servings": 4,
+    "prepMinutes": 35,
+    "method": "Soften the chopped onion and garlic in the olive oil.\nAdd the chopped tomatoes and cook down for ten minutes.\nSimmer for twenty five minutes, loosening with water as needed, then blend until smooth.\nSeason with the salt and serve.",
+    "ingredients": [
+      {
+        "name": "tomatoes",
+        "quantity": 6,
+        "unit": "unit"
+      },
+      {
+        "name": "onion",
+        "quantity": 1,
+        "unit": "unit"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "cloves"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      },
+      {
+        "name": "salt",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Bean Stew",
+    "category": "Main",
+    "servings": 4,
+    "prepMinutes": 40,
+    "method": "Soften the chopped onion and garlic in the olive oil.\nAdd the chopped tomatoes and cook down for ten minutes.\nStir in the beans and simmer for twenty minutes.\nSeason and serve.",
+    "ingredients": [
+      {
+        "name": "beans",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "name": "tomatoes",
+        "quantity": 3,
+        "unit": "unit"
+      },
+      {
+        "name": "onion",
+        "quantity": 1,
+        "unit": "unit"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "cloves"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      }
+    ]
+  },
+  {
+    "name": "Roast Chicken",
+    "category": "Main",
+    "servings": 4,
+    "prepMinutes": 90,
+    "method": "Rub the chicken all over with the olive oil and salt.\nTuck the crushed garlic under the skin.\nRoast at 180C for about ninety minutes until the juices run clear.\nRest for ten minutes before carving.",
+    "ingredients": [
+      {
+        "name": "chicken",
+        "quantity": 1200,
+        "unit": "g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp"
+      },
+      {
+        "name": "garlic",
+        "quantity": 4,
+        "unit": "cloves"
+      },
+      {
+        "name": "salt",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Lemon Butter Chicken",
+    "category": "Main",
+    "servings": 3,
+    "prepMinutes": 30,
+    "method": "Fry the chicken until golden on both sides.\nAdd the butter and sliced garlic to the pan.\nSqueeze in the lemon juice and simmer for five minutes.\nSpoon the sauce over the chicken to serve.",
+    "ingredients": [
+      {
+        "name": "chicken",
+        "quantity": 600,
+        "unit": "g"
+      },
+      {
+        "name": "butter",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "name": "lemon",
+        "quantity": 1,
+        "unit": "unit"
+      },
+      {
+        "name": "garlic",
+        "quantity": 3,
+        "unit": "cloves"
+      }
+    ]
+  },
+  {
+    "name": "Rice Pudding",
+    "category": "Dessert",
+    "servings": 4,
+    "prepMinutes": 50,
+    "method": "Combine the rice, milk and sugar in a heavy pan.\nBring to a gentle simmer, stirring often.\nCook for forty minutes until thick and creamy.\nServe warm or chilled.",
+    "ingredients": [
+      {
+        "name": "rice",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "milk",
+        "quantity": 700,
+        "unit": "ml"
+      },
+      {
+        "name": "sugar",
+        "quantity": 80,
+        "unit": "g"
+      }
+    ]
+  },
+  {
+    "name": "Simple Flatbread",
+    "category": "Side",
+    "servings": 4,
+    "prepMinutes": 30,
+    "method": "Mix the flour, salt and sugar into a soft dough.\nKnead for five minutes and rest for fifteen.\nDivide, roll thin and brush with the olive oil.\nCook in a dry hot pan for two minutes a side.",
+    "ingredients": [
+      {
+        "name": "flour",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "name": "salt",
+        "quantity": 5,
+        "unit": "g"
+      },
+      {
+        "name": "sugar",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      }
+    ]
+  }
+]
