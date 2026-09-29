@@ -30,4 +30,20 @@
     <string name="error_quantity_positive">Quantity must be greater than zero</string>
     <string name="error_quantity_large">Quantity must be 9999 or less</string>
     <string name="error_expiry_past">Expiry date cannot be in the past</string>
+
+    <string name="delete_title">Delete ingredient?</string>
+    <string name="delete_message">Remove %1$s from your pantry?</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="deleted">%1$s deleted</string>
+    <string name="delete_failed">Could not delete the ingredient</string>
+    <string name="pantry_hint">Tap to edit, long press to delete</string>
+
+    <string name="delete_title">Delete ingredient?</string>
+    <string name="delete_message">Remove %1$s from your pantry?</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="deleted">%1$s deleted</string>
+    <string name="delete_failed">Could not delete the ingredient</string>
+    <string name="pantry_hint">Tap to edit, long press to delete</string>
 </resources>

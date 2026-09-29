@@ -1,9 +1,15 @@
 package com.credra.smartpantrymanager.ui;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +30,7 @@ import java.util.List;
  * database into a RecyclerView.
  */
 public class PantryListActivity extends AppCompatActivity
-        implements PantryAdapter.OnItemClickListener {
+        implements PantryAdapter.OnItemClickListener, PantryAdapter.OnItemLongClickListener {
 
     private PantryDataSource dataSource;
     private PantryAdapter adapter;
@@ -46,7 +52,7 @@ public class PantryListActivity extends AppCompatActivity
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        adapter = new PantryAdapter(new ArrayList<PantryItem>(), this);
+        adapter = new PantryAdapter(new ArrayList<PantryItem>(), this, this);
         recyclerView.setAdapter(adapter);
 
         FloatingActionButton addButton = findViewById(R.id.addIngredientButton);
@@ -88,8 +94,35 @@ public class PantryListActivity extends AppCompatActivity
         recyclerView.setVisibility(empty ? View.GONE : View.VISIBLE);
     }
 
+    /** A tap opens the item for editing. */
     @Override
     public void onItemClick(PantryItem item) {
-        // Opens the edit screen once AddEditIngredientActivity exists.
+        startActivity(AddEditIngredientActivity.intentFor(this, item.getId()));
+    }
+
+    /** A long press offers to delete it, after confirming. */
+    @Override
+    public void onItemLongClick(final PantryItem item) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.delete_title)
+                .setMessage(getString(R.string.delete_message, item.getDisplayName()))
+                .setPositiveButton(R.string.action_delete, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteItem(item);
+                    }
+                })
+                .setNegativeButton(R.string.action_cancel, null)
+                .show();
+    }
+
+    private void deleteItem(PantryItem item) {
+        if (dataSource.deletePantryItem(item.getId())) {
+            Toast.makeText(this, getString(R.string.deleted, item.getDisplayName()),
+                    Toast.LENGTH_SHORT).show();
+            loadPantryItems();
+        } else {
+            Toast.makeText(this, R.string.delete_failed, Toast.LENGTH_SHORT).show();
+        }
     }
 }

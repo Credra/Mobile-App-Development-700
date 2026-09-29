@@ -24,15 +24,29 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         void onItemClick(PantryItem item);
     }
 
+    /** Long press is the delete gesture, handled by the activity. */
+    public interface OnItemLongClickListener {
+        void onItemLongClick(PantryItem item);
+    }
+
+    /** Long press is the delete gesture, handled by the activity. */
+    public interface OnItemLongClickListener {
+        void onItemLongClick(PantryItem item);
+    }
+
     private static final SimpleDateFormat EXPIRY_FORMAT =
             new SimpleDateFormat("d MMM yyyy", Locale.getDefault());
 
     private List<PantryItem> items;
-    private final OnItemClickListener listener;
+    private final OnItemClickListener clickListener;
+    private final OnItemLongClickListener longClickListener;
 
-    public PantryAdapter(List<PantryItem> items, OnItemClickListener listener) {
+    public PantryAdapter(List<PantryItem> items,
+                         OnItemClickListener clickListener,
+                         OnItemLongClickListener longClickListener) {
         this.items = items;
-        this.listener = listener;
+        this.clickListener = clickListener;
+        this.longClickListener = longClickListener;
     }
 
     /** Replaces the backing list after the database has changed. */
@@ -55,7 +69,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
 
     @Override
     public void onBindViewHolder(@NonNull PantryViewHolder holder, int position) {
-        holder.bind(items.get(position), listener);
+        holder.bind(items.get(position), clickListener, longClickListener);
     }
 
     @Override
@@ -76,7 +90,9 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
             expiryView = itemView.findViewById(R.id.itemExpiry);
         }
 
-        void bind(final PantryItem item, final OnItemClickListener listener) {
+        void bind(final PantryItem item,
+                  final OnItemClickListener clickListener,
+                  final OnItemLongClickListener longClickListener) {
             nameView.setText(item.getDisplayName());
             quantityView.setText(formatQuantity(item));
 
@@ -91,9 +107,21 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onItemClick(item);
+                    if (clickListener != null) {
+                        clickListener.onItemClick(item);
                     }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (longClickListener == null) {
+                        return false;
+                    }
+                    longClickListener.onItemLongClick(item);
+                    // Returning true stops the tap listener also firing.
+                    return true;
                 }
             });
         }
