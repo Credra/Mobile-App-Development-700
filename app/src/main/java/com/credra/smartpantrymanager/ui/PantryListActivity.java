@@ -13,6 +13,7 @@ import com.credra.smartpantrymanager.R;
 import com.credra.smartpantrymanager.data.PantryDataSource;
 import com.credra.smartpantrymanager.model.PantryItem;
 import com.credra.smartpantrymanager.ui.adapter.PantryAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -47,6 +48,15 @@ public class PantryListActivity extends AppCompatActivity
 
         adapter = new PantryAdapter(new ArrayList<PantryItem>(), this);
         recyclerView.setAdapter(adapter);
+
+        FloatingActionButton addButton = findViewById(R.id.addIngredientButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(AddEditIngredientActivity.intentFor(
+                        PantryListActivity.this, PantryItem.NEW_ITEM_ID));
+            }
+        });
 
         BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.setSelectedItemId(R.id.nav_pantry);

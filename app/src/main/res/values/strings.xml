@@ -10,4 +10,14 @@
     <string name="pantry_empty">Your pantry is empty.\nTap + to add your first ingredient.</string>
     <string name="expires_on">Expires %1$s</string>
     <string name="no_expiry">No expiry date</string>
+
+    <string name="title_add_ingredient">Add Ingredient</string>
+    <string name="title_edit_ingredient">Edit Ingredient</string>
+    <string name="hint_name">Ingredient name</string>
+    <string name="hint_quantity">Quantity</string>
+    <string name="hint_expiry">Expiry date (optional)</string>
+    <string name="action_save">Save</string>
+    <string name="action_clear">Clear</string>
+    <string name="save_failed">Could not save the ingredient</string>
+    <string name="item_not_found">That ingredient no longer exists</string>
 </resources>

@@ -21,6 +21,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.AddEditIngredientActivity"
+            android:parentActivityName=".ui.PantryListActivity" />
+
     </application>
 
 </manifest>
