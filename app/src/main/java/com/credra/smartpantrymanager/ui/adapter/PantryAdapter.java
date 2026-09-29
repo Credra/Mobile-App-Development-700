@@ -6,13 +6,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.credra.smartpantrymanager.R;
 import com.credra.smartpantrymanager.model.PantryItem;
+import com.credra.smartpantrymanager.util.Prefs;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.List;
 import java.util.Locale;
 
@@ -91,13 +94,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
             nameView.setText(item.getDisplayName());
             quantityView.setText(formatQuantity(item));
 
-            if (item.getExpiryDate() == null) {
-                expiryView.setVisibility(View.GONE);
-            } else {
-                expiryView.setVisibility(View.VISIBLE);
-                expiryView.setText(itemView.getContext().getString(R.string.expires_on,
-                        EXPIRY_FORMAT.format(new Date(item.getExpiryDate()))));
-            }
+            bindExpiry(item);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -119,6 +116,40 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
                     return true;
                 }
             });
+        }
+
+        /**
+         * Shows the expiry date, tinted when it is close or past, but only if
+         * the user has left that preference switched on.
+         */
+        private void bindExpiry(PantryItem item) {
+            if (item.getExpiryDate() == null) {
+                expiryView.setVisibility(View.GONE);
+                return;
+            }
+
+            android.content.Context context = itemView.getContext();
+            expiryView.setVisibility(View.VISIBLE);
+
+            long daysLeft = TimeUnit.MILLISECONDS.toDays(
+                    item.getExpiryDate() - System.currentTimeMillis());
+            String date = EXPIRY_FORMAT.format(new Date(item.getExpiryDate()));
+
+            int colour = R.color.text_secondary;
+            if (daysLeft < 0) {
+                expiryView.setText(context.getString(R.string.expired_on, date));
+                colour = R.color.expired;
+            } else {
+                expiryView.setText(context.getString(R.string.expires_on, date));
+                if (daysLeft < Prefs.EXPIRING_SOON_DAYS) {
+                    colour = R.color.expiring_soon;
+                }
+            }
+
+            if (!Prefs.isHighlightExpiring(context)) {
+                colour = R.color.text_secondary;
+            }
+            expiryView.setTextColor(ContextCompat.getColor(context, colour));
         }
 
         /** Shows "2 kg" rather than "2.0 kg" when the amount is a whole number. */

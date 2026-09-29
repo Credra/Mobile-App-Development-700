@@ -111,6 +111,15 @@ public class SuggestedRecipesActivity extends AppCompatActivity
                             android.R.anim.fade_out);
                     return false;
                 }
+                if (item.getItemId() == R.id.nav_settings) {
+                    Intent settings = new Intent(SuggestedRecipesActivity.this, SettingsActivity.class);
+                    settings.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(settings);
+                    overridePendingTransition(android.R.anim.fade_in,
+                            android.R.anim.fade_out);
+                    return false;
+                }
                 return item.getItemId() == R.id.nav_recipes;
             }
         });

@@ -49,4 +49,11 @@
     <string name="recipe_detail_meta">%1$s · Serves %2$d · %3$d min</string>
     <string name="method_step">%1$d. %2$s</string>
     <string name="recipe_not_found">That recipe could not be found</string>
+
+    <string name="title_settings">Settings</string>
+    <string name="setting_highlight_expiring">Highlight items expiring soon</string>
+    <string name="setting_highlight_expiring_detail">Shows the expiry date in amber when an ingredient is due within three days, and in red once it has passed.</string>
+    <string name="setting_default_unit">Default unit</string>
+    <string name="setting_default_unit_detail">Pre-selected when you add a new ingredient.</string>
+    <string name="expired_on">Expired %1$s</string>
 </resources>

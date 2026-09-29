@@ -18,6 +18,7 @@ import com.credra.smartpantrymanager.R;
 import com.credra.smartpantrymanager.data.PantryDataSource;
 import com.credra.smartpantrymanager.logic.UnitConverter;
 import com.credra.smartpantrymanager.model.PantryItem;
+import com.credra.smartpantrymanager.util.Prefs;
 import com.credra.smartpantrymanager.util.Validators;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -132,6 +133,13 @@ public class AddEditIngredientActivity extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, units);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         unitSpinner.setAdapter(adapter);
+
+        // A new item starts on the user's preferred unit; an existing one is
+        // overwritten by populateFields().
+        int preferred = units.indexOf(Prefs.getDefaultUnit(this));
+        if (preferred >= 0) {
+            unitSpinner.setSelection(preferred);
+        }
     }
 
     /** Fills the form from the item being edited. */

@@ -96,6 +96,15 @@ public class PantryListActivity extends AppCompatActivity
                     // which is where the user comes back to.
                     return false;
                 }
+                if (item.getItemId() == R.id.nav_settings) {
+                    Intent settings = new Intent(PantryListActivity.this, SettingsActivity.class);
+                    settings.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(settings);
+                    overridePendingTransition(android.R.anim.fade_in,
+                            android.R.anim.fade_out);
+                    return false;
+                }
                 return item.getItemId() == R.id.nav_pantry;
             }
         });
