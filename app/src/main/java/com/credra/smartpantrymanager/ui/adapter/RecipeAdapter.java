@@ -12,6 +12,7 @@ import com.credra.smartpantrymanager.R;
 import com.credra.smartpantrymanager.model.MatchResult;
 import com.credra.smartpantrymanager.model.Recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,43 +20,98 @@ import java.util.List;
  *
  * It takes {@link MatchResult} rather than {@link Recipe} so the same adapter
  * serves both the strict suggestions and the optional Almost There list, where
- * the missing ingredient needs to be shown.
+ * the missing ingredient needs to be shown. Section headers are a second view
+ * type, which is what keeps the two lists visibly separate.
  */
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
+public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_RECIPE = 1;
 
     public interface OnRecipeClickListener {
         void onRecipeClick(Recipe recipe);
     }
 
-    private List<MatchResult> results;
+    /** One line of the list: either a section heading or a recipe. */
+    public static final class Row {
+
+        private final String header;
+        private final MatchResult result;
+
+        private Row(String header, MatchResult result) {
+            this.header = header;
+            this.result = result;
+        }
+
+        public static Row header(String title) {
+            return new Row(title, null);
+        }
+
+        public static Row recipe(MatchResult result) {
+            return new Row(null, result);
+        }
+
+        boolean isHeader() {
+            return header != null;
+        }
+    }
+
+    private List<Row> rows = new ArrayList<>();
     private final OnRecipeClickListener listener;
 
-    public RecipeAdapter(List<MatchResult> results, OnRecipeClickListener listener) {
-        this.results = results;
+    public RecipeAdapter(List<Row> rows, OnRecipeClickListener listener) {
+        this.rows = rows;
         this.listener = listener;
     }
 
-    public void setResults(List<MatchResult> results) {
-        this.results = results;
+    public void setRows(List<Row> rows) {
+        this.rows = rows;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return rows.get(position).isHeader() ? TYPE_HEADER : TYPE_RECIPE;
     }
 
     @NonNull
     @Override
-    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_recipe, parent, false);
-        return new RecipeViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        if (viewType == TYPE_HEADER) {
+            return new HeaderViewHolder(
+                    inflater.inflate(R.layout.item_section_header, parent, false));
+        }
+        return new RecipeViewHolder(inflater.inflate(R.layout.item_recipe, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
-        holder.bind(results.get(position), listener);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Row row = rows.get(position);
+        if (row.isHeader()) {
+            ((HeaderViewHolder) holder).bind(row.header);
+        } else {
+            ((RecipeViewHolder) holder).bind(row.result, listener);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return results == null ? 0 : results.size();
+        return rows == null ? 0 : rows.size();
+    }
+
+    static class HeaderViewHolder extends RecyclerView.ViewHolder {
+
+        private final TextView titleView;
+
+        HeaderViewHolder(@NonNull View itemView) {
+            super(itemView);
+            titleView = itemView.findViewById(R.id.sectionTitle);
+        }
+
+        void bind(String title) {
+            titleView.setText(title);
+        }
     }
 
     static class RecipeViewHolder extends RecyclerView.ViewHolder {
@@ -79,7 +135,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                     recipe.getPrepMinutes(),
                     recipe.getIngredients().size()));
 
-            // Only the Almost There list has anything to report here.
+            // Only the Almost There rows have anything to report here.
             if (result.isStrictMatch()) {
                 shortfallView.setVisibility(View.GONE);
             } else {

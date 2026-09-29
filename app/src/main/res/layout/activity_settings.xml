@@ -41,6 +41,27 @@
                 android:layout_marginBottom="20dp"
                 android:background="?android:attr/listDivider" />
 
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/almostThereSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_almost_there"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/setting_almost_there_detail"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="?android:attr/listDivider" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

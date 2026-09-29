@@ -56,4 +56,9 @@
     <string name="setting_default_unit">Default unit</string>
     <string name="setting_default_unit_detail">Pre-selected when you add a new ingredient.</string>
     <string name="expired_on">Expired %1$s</string>
+
+    <string name="setting_almost_there">Show Almost There recipes</string>
+    <string name="setting_almost_there_detail">Also lists recipes you are short by exactly one ingredient, in a separate section below the suggestions.</string>
+    <string name="section_suggested">READY TO COOK</string>
+    <string name="section_almost_there">ALMOST THERE — MISSING ONE INGREDIENT</string>
 </resources>

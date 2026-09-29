@@ -16,8 +16,10 @@ import com.credra.smartpantrymanager.R;
 import com.credra.smartpantrymanager.data.PantryDataSource;
 import com.credra.smartpantrymanager.logic.RecipeMatcher;
 import com.credra.smartpantrymanager.model.MatchResult;
+import com.credra.smartpantrymanager.model.PantryItem;
 import com.credra.smartpantrymanager.model.Recipe;
 import com.credra.smartpantrymanager.ui.adapter.RecipeAdapter;
+import com.credra.smartpantrymanager.util.Prefs;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -54,7 +56,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        adapter = new RecipeAdapter(new ArrayList<MatchResult>(), this);
+        adapter = new RecipeAdapter(new ArrayList<RecipeAdapter.Row>(), this);
         recyclerView.setAdapter(adapter);
 
         setUpBottomNavigation();
@@ -81,13 +83,38 @@ public class SuggestedRecipesActivity extends AppCompatActivity
     }
 
     private void loadSuggestions() {
-        List<MatchResult> matches = RecipeMatcher.findStrictMatches(
-                dataSource.getAllPantryItems(), dataSource.getAllRecipes());
-        adapter.setResults(matches);
+        List<PantryItem> pantry = dataSource.getAllPantryItems();
+        List<Recipe> recipes = dataSource.getAllRecipes();
 
-        boolean empty = matches.isEmpty();
-        emptyStateText.setVisibility(empty ? View.VISIBLE : View.GONE);
-        recyclerView.setVisibility(empty ? View.GONE : View.VISIBLE);
+        List<MatchResult> strict = RecipeMatcher.findStrictMatches(pantry, recipes);
+        List<RecipeAdapter.Row> rows = new ArrayList<>();
+
+        // The strict suggestions always come first and are never mixed with
+        // anything the user cannot actually cook right now.
+        if (!strict.isEmpty()) {
+            rows.add(RecipeAdapter.Row.header(getString(R.string.section_suggested)));
+            for (MatchResult match : strict) {
+                rows.add(RecipeAdapter.Row.recipe(match));
+            }
+        }
+
+        if (Prefs.isShowAlmostThere(this)) {
+            List<MatchResult> almost = RecipeMatcher.findAlmostThere(pantry, recipes);
+            if (!almost.isEmpty()) {
+                rows.add(RecipeAdapter.Row.header(getString(R.string.section_almost_there)));
+                for (MatchResult match : almost) {
+                    rows.add(RecipeAdapter.Row.recipe(match));
+                }
+            }
+        }
+
+        adapter.setRows(rows);
+
+        // The empty state is about the strict list: having only Almost There
+        // results still means there is nothing you can cook.
+        boolean nothingToCook = strict.isEmpty();
+        emptyStateText.setVisibility(nothingToCook && rows.isEmpty() ? View.VISIBLE : View.GONE);
+        recyclerView.setVisibility(rows.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
     private void setUpBottomNavigation() {

@@ -13,12 +13,14 @@ public final class Prefs {
 
     private static final String KEY_HIGHLIGHT_EXPIRING = "highlight_expiring";
     private static final String KEY_DEFAULT_UNIT = "default_unit";
+    private static final String KEY_SHOW_ALMOST_THERE = "show_almost_there";
 
     /** An item is "expiring soon" when it is due within this many days. */
     public static final int EXPIRING_SOON_DAYS = 3;
 
     private static final boolean DEFAULT_HIGHLIGHT_EXPIRING = true;
     private static final String DEFAULT_UNIT = "g";
+    private static final boolean DEFAULT_SHOW_ALMOST_THERE = false;
 
     private Prefs() {
     }
@@ -43,5 +45,14 @@ public final class Prefs {
 
     public static void setDefaultUnit(Context context, String unit) {
         prefs(context).edit().putString(KEY_DEFAULT_UNIT, unit).apply();
+    }
+
+    /** Whether to also list recipes that are short by exactly one ingredient. */
+    public static boolean isShowAlmostThere(Context context) {
+        return prefs(context).getBoolean(KEY_SHOW_ALMOST_THERE, DEFAULT_SHOW_ALMOST_THERE);
+    }
+
+    public static void setShowAlmostThere(Context context, boolean show) {
+        prefs(context).edit().putBoolean(KEY_SHOW_ALMOST_THERE, show).apply();
     }
 }

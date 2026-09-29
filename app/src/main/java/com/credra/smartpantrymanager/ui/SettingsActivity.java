@@ -34,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
         setTitle(R.string.title_settings);
 
         setUpExpiringSwitch();
+        setUpAlmostThereSwitch();
         setUpDefaultUnitSpinner();
         setUpBottomNavigation();
     }
@@ -45,6 +46,17 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton button, boolean checked) {
                 Prefs.setHighlightExpiring(SettingsActivity.this, checked);
+            }
+        });
+    }
+
+    private void setUpAlmostThereSwitch() {
+        SwitchMaterial toggle = findViewById(R.id.almostThereSwitch);
+        toggle.setChecked(Prefs.isShowAlmostThere(this));
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton button, boolean checked) {
+                Prefs.setShowAlmostThere(SettingsActivity.this, checked);
             }
         });
     }
