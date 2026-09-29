@@ -39,11 +39,4 @@
     <string name="delete_failed">Could not delete the ingredient</string>
     <string name="pantry_hint">Tap to edit, long press to delete</string>
 
-    <string name="delete_title">Delete ingredient?</string>
-    <string name="delete_message">Remove %1$s from your pantry?</string>
-    <string name="action_delete">Delete</string>
-    <string name="action_cancel">Cancel</string>
-    <string name="deleted">%1$s deleted</string>
-    <string name="delete_failed">Could not delete the ingredient</string>
-    <string name="pantry_hint">Tap to edit, long press to delete</string>
 </resources>

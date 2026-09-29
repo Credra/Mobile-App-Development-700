@@ -29,11 +29,6 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         void onItemLongClick(PantryItem item);
     }
 
-    /** Long press is the delete gesture, handled by the activity. */
-    public interface OnItemLongClickListener {
-        void onItemLongClick(PantryItem item);
-    }
-
     private static final SimpleDateFormat EXPIRY_FORMAT =
             new SimpleDateFormat("d MMM yyyy", Locale.getDefault());
 
