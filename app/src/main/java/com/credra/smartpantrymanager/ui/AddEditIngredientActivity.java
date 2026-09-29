@@ -3,6 +3,8 @@ package com.credra.smartpantrymanager.ui;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -66,6 +68,11 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         quantityLayout = findViewById(R.id.quantityLayout);
         expiryLayout = findViewById(R.id.expiryLayout);
 
+        // An error should disappear the moment the user starts fixing it,
+        // rather than lingering until the next save attempt.
+        nameInput.addTextChangedListener(new ClearErrorWatcher(nameLayout));
+        quantityInput.addTextChangedListener(new ClearErrorWatcher(quantityLayout));
+
         setUpUnitSpinner();
 
         dataSource = new PantryDataSource(this);
@@ -100,6 +107,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectedExpiry = null;
                 expiryInput.setText("");
+                expiryLayout.setError(null);
             }
         });
 
@@ -157,6 +165,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
                         picked.set(Calendar.MILLISECOND, 0);
                         selectedExpiry = picked.getTimeInMillis();
                         expiryInput.setText(DATE_FORMAT.format(picked.getTime()));
+                        expiryLayout.setError(null);
                     }
                 },
                 calendar.get(Calendar.YEAR),
@@ -269,5 +278,30 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         Intent intent = new Intent(context, AddEditIngredientActivity.class);
         intent.putExtra(EXTRA_ITEM_ID, itemId);
         return intent;
+    }
+
+    /** Clears one field's error as soon as its text changes. */
+    private static class ClearErrorWatcher implements TextWatcher {
+
+        private final TextInputLayout layout;
+
+        ClearErrorWatcher(TextInputLayout layout) {
+            this.layout = layout;
+        }
+
+        @Override
+        public void onTextChanged(CharSequence text, int start, int before, int count) {
+            layout.setError(null);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence text, int start, int count, int after) {
+            // Not needed.
+        }
+
+        @Override
+        public void afterTextChanged(Editable text) {
+            // Not needed.
+        }
     }
 }
