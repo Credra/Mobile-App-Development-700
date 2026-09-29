@@ -99,6 +99,11 @@ public final class IngredientNormalizer {
         if (word.length() <= 3) {
             return word;
         }
+        if (word.endsWith("llies")) {
+            // "chillies" is chilli plus es, not chilly plus ies. Without this the
+            // rule below would produce "chilly", which never matches "chilli".
+            return word.substring(0, word.length() - 2);
+        }
         if (word.endsWith("ies") && word.length() > 4) {
             // berries -> berry
             return word.substring(0, word.length() - 3) + "y";

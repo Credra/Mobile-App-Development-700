@@ -23,6 +23,13 @@ public class IngredientNormalizerTest {
     }
 
     @Test
+    public void singularisesChilliesToChilli() {
+        assertEquals("chilli", IngredientNormalizer.canonical("Chillies"));
+        assertEquals(IngredientNormalizer.canonical("chilli"),
+                IngredientNormalizer.canonical("Chillies"));
+    }
+
+    @Test
     public void doesNotMangleWordsThatMerelyEndInS() {
         // These are not plurals. Stripping the trailing "s" would break matching.
         assertEquals("couscous", IngredientNormalizer.canonical("Couscous"));
