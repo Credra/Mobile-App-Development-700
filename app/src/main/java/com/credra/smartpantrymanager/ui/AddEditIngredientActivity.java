@@ -16,7 +16,9 @@ import com.credra.smartpantrymanager.R;
 import com.credra.smartpantrymanager.data.PantryDataSource;
 import com.credra.smartpantrymanager.logic.UnitConverter;
 import com.credra.smartpantrymanager.model.PantryItem;
+import com.credra.smartpantrymanager.util.Validators;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,6 +46,9 @@ public class AddEditIngredientActivity extends AppCompatActivity {
     private TextInputEditText quantityInput;
     private TextInputEditText expiryInput;
     private Spinner unitSpinner;
+    private TextInputLayout nameLayout;
+    private TextInputLayout quantityLayout;
+    private TextInputLayout expiryLayout;
 
     /** Null until the user picks a date, since expiry is optional. */
     private Long selectedExpiry;
@@ -57,6 +62,9 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         quantityInput = findViewById(R.id.quantityInput);
         expiryInput = findViewById(R.id.expiryInput);
         unitSpinner = findViewById(R.id.unitSpinner);
+        nameLayout = findViewById(R.id.nameLayout);
+        quantityLayout = findViewById(R.id.quantityLayout);
+        expiryLayout = findViewById(R.id.expiryLayout);
 
         setUpUnitSpinner();
 
@@ -158,6 +166,10 @@ public class AddEditIngredientActivity extends AppCompatActivity {
     }
 
     private void saveItem() {
+        if (!isFormValid()) {
+            return;
+        }
+
         currentItem.setDisplayName(text(nameInput));
         currentItem.setQuantity(Double.parseDouble(text(quantityInput)));
         currentItem.setUnit((String) unitSpinner.getSelectedItem());
@@ -173,6 +185,72 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, R.string.save_failed, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * Checks every field and shows the first problem against the field it
+     * belongs to. Returns false without saving if anything is wrong.
+     */
+    private boolean isFormValid() {
+        nameLayout.setError(null);
+        quantityLayout.setError(null);
+        expiryLayout.setError(null);
+        boolean valid = true;
+
+        Validators.NameError nameError = Validators.checkName(text(nameInput));
+        if (nameError != null) {
+            nameLayout.setError(getString(messageFor(nameError)));
+            valid = false;
+        }
+
+        Validators.QuantityError quantityError = Validators.checkQuantity(text(quantityInput));
+        if (quantityError != null) {
+            quantityLayout.setError(getString(messageFor(quantityError)));
+            valid = false;
+        }
+
+        if (Validators.isExpiryInThePast(selectedExpiry, startOfToday())) {
+            expiryLayout.setError(getString(R.string.error_expiry_past));
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    private int messageFor(Validators.NameError error) {
+        switch (error) {
+            case EMPTY:
+                return R.string.error_name_empty;
+            case TOO_SHORT:
+                return R.string.error_name_short;
+            case TOO_LONG:
+                return R.string.error_name_long;
+            default:
+                return R.string.error_name_letters;
+        }
+    }
+
+    private int messageFor(Validators.QuantityError error) {
+        switch (error) {
+            case EMPTY:
+                return R.string.error_quantity_empty;
+            case NOT_A_NUMBER:
+                return R.string.error_quantity_number;
+            case NOT_POSITIVE:
+                return R.string.error_quantity_positive;
+            default:
+                return R.string.error_quantity_large;
+        }
+    }
+
+    /** Midnight today, so an expiry set for today still counts as valid. */
+    private long startOfToday() {
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        today.set(Calendar.MILLISECOND, 0);
+        return today.getTimeInMillis();
     }
 
     private String text(TextInputEditText field) {
