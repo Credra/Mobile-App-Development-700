@@ -25,6 +25,10 @@
             android:name=".ui.AddEditIngredientActivity"
             android:parentActivityName=".ui.PantryListActivity" />
 
+        <activity
+            android:name=".ui.SuggestedRecipesActivity"
+            android:parentActivityName=".ui.PantryListActivity" />
+
     </application>
 
 </manifest>

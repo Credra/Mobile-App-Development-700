@@ -1,14 +1,19 @@
 package com.credra.smartpantrymanager.ui;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -21,6 +26,7 @@ import com.credra.smartpantrymanager.model.PantryItem;
 import com.credra.smartpantrymanager.ui.adapter.PantryAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,8 +70,25 @@ public class PantryListActivity extends AppCompatActivity
             }
         });
 
+        setUpBottomNavigation();
+    }
+
+    private void setUpBottomNavigation() {
         BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.setSelectedItemId(R.id.nav_pantry);
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.nav_recipes) {
+                    Intent intent = new Intent(PantryListActivity.this,
+                            SuggestedRecipesActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+                    return true;
+                }
+                return item.getItemId() == R.id.nav_pantry;
+            }
+        });
     }
 
     /**

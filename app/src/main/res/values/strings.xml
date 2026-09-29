@@ -39,4 +39,8 @@
     <string name="delete_failed">Could not delete the ingredient</string>
     <string name="pantry_hint">Tap to edit, long press to delete</string>
 
+
+    <string name="title_recipes">Suggested Recipes</string>
+    <string name="recipes_empty">No recipes match your pantry yet.\nAdd more ingredients to see suggestions.</string>
+    <string name="recipe_meta">%1$s · %2$d min · %3$d ingredients</string>
 </resources>
