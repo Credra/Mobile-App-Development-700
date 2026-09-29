@@ -118,6 +118,6 @@ public class SuggestedRecipesActivity extends AppCompatActivity
 
     @Override
     public void onRecipeClick(Recipe recipe) {
-        // Opens the detail screen once RecipeDetailActivity exists.
+        startActivity(RecipeDetailActivity.intentFor(this, recipe.getId()));
     }
 }

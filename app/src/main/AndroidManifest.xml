@@ -30,6 +30,10 @@
             android:name=".ui.SuggestedRecipesActivity"
             android:launchMode="singleTop" />
 
+        <activity
+            android:name=".ui.RecipeDetailActivity"
+            android:parentActivityName=".ui.SuggestedRecipesActivity" />
+
     </application>
 
 </manifest>
