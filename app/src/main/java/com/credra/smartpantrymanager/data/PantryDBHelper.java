@@ -14,7 +14,7 @@ public class PantryDBHelper extends SQLiteOpenHelper {
     private static final String TAG = "PantryDBHelper";
 
     private static final String DATABASE_NAME = "smartpantry.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public static final String TABLE_PANTRY = "pantry_item";
     public static final String TABLE_RECIPE = "recipe";
@@ -101,13 +101,22 @@ public class PantryDBHelper extends SQLiteOpenHelper {
         RecipeSeeder.seed(context, db);
     }
 
+    /**
+     * Rebuilds the recipe collection, which ships with the app, and leaves the
+     * pantry alone because that is the user's own data.
+     *
+     * Without this the seeded recipes would be frozen at whatever shipped when
+     * the database was first created, since onCreate only runs once.
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPE_INGREDIENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PANTRY);
-        onCreate(db);
+        db.execSQL(CREATE_TABLE_RECIPE);
+        db.execSQL(CREATE_TABLE_RECIPE_INGREDIENT);
+        db.execSQL(CREATE_INDEX_INGREDIENT_RECIPE);
+        RecipeSeeder.seed(context, db);
     }
 
     @Override
