@@ -82,9 +82,19 @@ public class PantryListActivity extends AppCompatActivity
                 if (item.getItemId() == R.id.nav_recipes) {
                     Intent intent = new Intent(PantryListActivity.this,
                             SuggestedRecipesActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    // Reuse the existing screen instead of stacking a new copy.
+                    // REORDER_TO_FRONT was skipping the transition on every
+                    // switch after the first.
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
-                    return true;
+                    // Cross-fade rather than a hard cut, so switching
+                    // tabs does not flash between windows.
+                    overridePendingTransition(android.R.anim.fade_in,
+                            android.R.anim.fade_out);
+                    // Returning false leaves this screen's highlight on Pantry,
+                    // which is where the user comes back to.
+                    return false;
                 }
                 return item.getItemId() == R.id.nav_pantry;
             }
@@ -100,6 +110,9 @@ public class PantryListActivity extends AppCompatActivity
         super.onResume();
         dataSource.open();
         loadPantryItems();
+
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+        bottomNavigation.setSelectedItemId(R.id.nav_pantry);
     }
 
     @Override
