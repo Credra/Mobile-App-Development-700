@@ -50,11 +50,20 @@ public class RecipeIngredient {
         return canonicalName + "|" + baseUnit;
     }
 
-    /** Human readable amount for the recipe detail screen, e.g. "400 g spaghetti". */
+    /**
+     * Human readable amount for the recipe detail screen, e.g. "400 g spaghetti".
+     *
+     * Things that are simply counted read better without the unit, so this
+     * gives "2 eggs" rather than "2 unit eggs". Named units such as cloves and
+     * slices are kept, because "2 cloves garlic" does read naturally.
+     */
     public String describe() {
         String amount = (quantity == Math.floor(quantity))
                 ? String.valueOf((long) quantity)
                 : String.valueOf(quantity);
+        if ("unit".equals(unit)) {
+            return amount + " " + displayName;
+        }
         return amount + " " + unit + " " + displayName;
     }
 }
